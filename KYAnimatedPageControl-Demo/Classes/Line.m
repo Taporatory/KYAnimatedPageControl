@@ -98,7 +98,7 @@
 //invoke when call setNeedDisplay
 -(void)drawInContext:(CGContextRef)ctx{
     
-    NSLog(@"selectedLineLength:%f",self.selectedLineLength);
+//    NSLog(@"selectedLineLength:%f",self.selectedLineLength);
     
     NSAssert(self.selectedPage <= self.pageCount, @"ERROR:PageCount can not less than selectedPage");
     NSAssert(self.selectedPage != 0, @"ERROR:SelectedPage can not be ZERO!");
@@ -199,6 +199,10 @@
 -(void)animateSelectedLineWithScrollView:(UIScrollView *)scrollView{
     
     if (scrollView.contentOffset.x <= 0) {
+        return;
+    }
+    
+    if(scrollView.contentOffset.x > scrollView.frame.size.width*(self.pageCount-1)){
         return;
     }
     

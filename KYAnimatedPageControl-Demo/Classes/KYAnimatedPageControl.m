@@ -11,7 +11,7 @@
 #import "KYAnimatedPageControl+UICollectionViewDelegate.h"
 #import "GooeyCircle.h"
 #import "RotateRect.h"
-#import <GCDMulticastDelegate.h>
+#import "GCDMulticastDelegate.h"
 #import "GCDMulticastDelegate+ResponseToSelector.h"
 
 @interface KYAnimatedPageControl()
@@ -53,6 +53,8 @@
     
     self.layer.masksToBounds = NO;
     
+    self.insets = UIEdgeInsetsZero;
+    
     //init scrollviewDelegate
     _bindScrollViewDelegate = self;
     
@@ -74,8 +76,14 @@
 - (void)layoutSubviews
 {
     //adjust sub-layers' frame
-    self.line.frame = self.bounds;
-    self.indicator.frame = self.bounds;
+    self.line.frame = CGRectMake(self.insets.left,
+                                 self.bounds.origin.y+self.insets.top,
+                                 self.bounds.size.width-self.insets.left-self.insets.right,
+                                 self.bounds.size.height-self.insets.top-self.insets.bottom);
+    self.indicator.frame = CGRectMake(self.insets.left+self.line.ballDiameter*0.5-self.indicatorSize*0.5,
+                                      self.bounds.origin.y+self.insets.top,
+                                      self.bounds.size.width-(self.insets.left+self.line.ballDiameter*0.5-self.indicatorSize*0.5)-(self.insets.right+self.line.ballDiameter*0.5-self.indicatorSize*0.5),
+                                      self.bounds.size.height-self.insets.top-self.insets.bottom);
     
     //remove sub-layers from super layer first
     [self.line removeFromSuperlayer];

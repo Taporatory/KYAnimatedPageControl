@@ -1,0 +1,1 @@
+../../../../Classes/KYAnimatedPageControl+UICollectionViewDelegate.h

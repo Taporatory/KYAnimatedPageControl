@@ -55,6 +55,7 @@ typedef enum : NSUInteger {
 //Indicator 只读!  Readonly!
 @property(nonatomic,strong)Indicator *indicator;
 
+@property (nonatomic, assign) UIEdgeInsets insets;
 
 //-----READONLY-----
 //直线Layer

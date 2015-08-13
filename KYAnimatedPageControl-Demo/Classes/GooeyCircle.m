@@ -126,7 +126,6 @@
 #pragma mark -- override superclass method
 -(void)animateIndicatorWithScrollView:(UIScrollView *)scrollView andIndicator:(KYAnimatedPageControl *)pgctl{
     
-    
     if ((scrollView.contentOffset.x - self.lastContentOffset) >= 0 && (scrollView.contentOffset.x - self.lastContentOffset) <= (scrollView.frame.size.width)/2) {
         self.scrollDirection = ScrollDirectionLeft;
     }else if ((scrollView.contentOffset.x - self.lastContentOffset) <= 0 && (scrollView.contentOffset.x - self.lastContentOffset) >= -(scrollView.frame.size.width)/2){
@@ -142,21 +141,20 @@
 //    NSLog(@"factor:%f",_factor);
 
     
-    CGFloat originX = (scrollView.contentOffset.x / scrollView.frame.size.width) * (pgctl.frame.size.width / (pgctl.pageCount-1));
+    CGFloat originX = (scrollView.contentOffset.x / scrollView.frame.size.width) * ((self.frame.size.width-self.indicatorSize) / (pgctl.pageCount-1));
     
     if (originX - self.indicatorSize/2 <= 0) {
         
         self.currentRect = CGRectMake(0, self.frame.size.height/2-self.indicatorSize/2, self.indicatorSize, self.indicatorSize);
         
-    }else if ((originX - self.indicatorSize/2) >= self.frame.size.width - self.indicatorSize){
+    }else if (originX >= self.frame.size.width - self.indicatorSize){
         
         self.currentRect = CGRectMake(self.frame.size.width - self.indicatorSize, self.frame.size.height/2-self.indicatorSize/2, self.indicatorSize, self.indicatorSize);
         
     }else{
-        
-        self.currentRect = CGRectMake(originX - self.indicatorSize/2, self.frame.size.height/2-self.indicatorSize/2, self.indicatorSize, self.indicatorSize);
-    }
     
+        self.currentRect = CGRectMake(originX, self.frame.size.height/2-self.indicatorSize/2, self.indicatorSize, self.indicatorSize);
+    }
 
     [self setNeedsDisplay];
 

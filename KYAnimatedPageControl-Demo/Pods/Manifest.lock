@@ -11,7 +11,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  KYAnimatedPageControl: 6c21afa3dbceaabd1529ab4b41a723f888cd29da
+  KYAnimatedPageControl: c2f430e4db9d263de7e666b74aec1ae9c407e711
   MulticastDelegate: 473589ab16a00612150f8bfd726caac85125e695
 
-COCOAPODS: 0.37.1
+COCOAPODS: 0.35.0

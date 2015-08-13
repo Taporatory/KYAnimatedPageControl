@@ -14,6 +14,13 @@
 #pragma mark -- UICollectionViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
+    CGFloat offset = scrollView.contentOffset.x-scrollView.frame.size.width * (self.pageCount-1);
+    if(offset > 0){
+        self.center = CGPointMake(self.superview.frame.size.width*0.5-offset,
+                                  self.center.y);
+        return;
+    }
+    
     //Indicator动画
     [self.indicator animateIndicatorWithScrollView:scrollView andIndicator:self];
     
